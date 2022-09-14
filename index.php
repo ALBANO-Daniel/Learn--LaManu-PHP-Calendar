@@ -1,26 +1,15 @@
 <?php
-// $arr = array(1, 2, 3, 4);
-// foreach ($calandrier as &$value) {
-//     $value = $value * 2;
-// }
+
 $calandrier = [];
 for ($i = 0; $i <= 41; $i++) {
     $calandrier[$i] = '';
 }
 
-// USER INPUT VARIABLES HERE:
-// is the chooosed section line 32
-
-// PRIMARY AFFECTIONS :
-
-// $currentMonth     --> to affect header
-// $currentYear     --> to affect header
-// $currentDay       --> to affect the addtitions and background-selected
-
-
 $choosedYear = $_GET['year'];
 $choosedMonth = $_GET['month'];
-$choosedDate = new DateTime("$choosedYear-$choosedMonth-1"); // could future add $choosedDay || it would be related to JS effects -> affection to object
+
+$choosedDate = new DateTime("$choosedYear-$choosedMonth-1"); 
+// could future add $choosedDay || it would be related to JS effects -> affection to object
 
 $choosedMonthLiteral = $choosedDate->format('F');
 $choosedMonthTotalDays = $choosedDate->format('t'); // 28-31
@@ -33,9 +22,9 @@ for ($i = 1; $i <= $choosedMonthTotalDays; $i++) {
     $dayCounter++;
 }
 // details v2.0
-//-- a for to fill the days before (need to verify month before month days number)
+//-- a for to fill the days before  // using NewDate negative
 //-- a for to fill the days after
-//-- on click you change for the month of the days
+//-- on click => go to the month of cliked day    choosedMonth -1/+1
 ?>
 
 <!DOCTYPE html>
@@ -122,6 +111,5 @@ for ($i = 1; $i <= $choosedMonthTotalDays; $i++) {
             </tr>
         </tbody>
     </table>
-    <script src="./index.js"></script>
 </body>
 </html>
