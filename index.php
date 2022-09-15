@@ -81,15 +81,15 @@ for ($i = 1; $i <= $choosedMonthTotalDays; $i++) {
         </thead>
         <tbody>
             <?php
-            $i = 0;
+            $filler = 0;
             $index = 0;
-            while ($i <= 41) {
-                if ($i % 7 == 0) echo '<tr>';
-                $i++;
-                while ($i % 7 != 0) {
+            while ($filler <= 41) {
+                if ($filler % 7 == 0) echo '<tr>';
+                $filler++;
+                while ($filler % 7 != 0) {
                     echo '<td>' . $calandrier[$index] . '</td>';
                     $index++;
-                    $i++;
+                    $filler++;
                 };
                 echo '<td>' . $calandrier[$index] . '</td>';
                 $index++;
