@@ -1,19 +1,24 @@
 body{
     width: 100vw;
+    background-color: beige;
     display: flex;
     justify-content: center;
     text-align: center;
-    /* flex-wrap: wrap; */
     flex-direction: column;
     padding: 1rem;
 }
+h1{
+    font-family: 'Bungee Inline', cursive;
+}
 table{
+    background-color: blanchedalmond;
     width: 50%;
     height: 50%;
     margin: 1rem;
     align-self: center;
 }
 caption{
+    font-family: 'Bungee Inline', cursive;
     font-size: 28px;
     font-weight: 900;
     padding-top: 3rem;
