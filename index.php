@@ -12,19 +12,18 @@ $choosedYear = $_GET['year'] ?? $currentYear;
 $choosedMonth = $_GET['month'] ?? $currentMonth;
 
 $choosedDate = new DateTime("$choosedYear-$choosedMonth-1");
-// could future add $choosedDay || it would be related to JS effects -> affection to object
+// v2.0 --> could future add $choosedDay || it would be related to JS effects -> affection to object
 
 $choosedMonthLiteral = $choosedDate->format('F');
 $choosedMonthTotalDays = $choosedDate->format('t'); // 28-31
 $choosedMonthFirstWeekDay = $choosedDate->format('N'); // 1 for monday, 7 for sunday
 
-//an for to fill the actual month days i.e. $calandrier[]
-$dayCounter = $choosedMonthFirstWeekDay - 1;
+$fillUpCalendar = $choosedMonthFirstWeekDay - 1;
 for ($i = 1; $i <= $choosedMonthTotalDays; $i++) {
-    $calandrier[$dayCounter] = $i;
-    $dayCounter++;
+    $calandrier[$fillUpCalendar] = $i;
+    $fillUpCalendar++;
 }
-// details v2.0
+//--> v2.0
 //-- a for to fill the days before  // using NewDate negative
 //-- a for to fill the days after
 //-- on click => go to the month of cliked day    choosedMonth -1/+1
@@ -66,9 +65,6 @@ for ($i = 1; $i <= $choosedMonthTotalDays; $i++) {
         <input type="number" name="year" id="year" min="1000" max="3000" required>
         <input type="submit" value="Search!">
     </form>
-    <div>
-        <form action="get"><input type="number" value="12" name="ok"></form>
-    </div>
     <!-- CALENDAR TABLE  -->
     <table>
         <caption><?= $choosedMonthLiteral . ' - ' . $choosedYear ?></caption>
