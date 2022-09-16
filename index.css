@@ -1,19 +1,25 @@
-body{
+html,body{
     width: 100vw;
+    border: none;
+    margin: 0;
+    padding: 0;
     background-color: beige;
     display: flex;
     justify-content: center;
     text-align: center;
     flex-direction: column;
-    padding: 1rem;
+    /* padding: 1rem; */
+}
+td:focus-visible{
+    background: rgb(246, 207, 149);
 }
 h1{
     font-family: 'Bungee Inline', cursive;
 }
 table{
-    background-color: blanchedalmond;
-    width: 50%;
-    height: 50%;
+    background-color: blanchedalmond;   
+    /* width: 70%; */
+    /* height: 70%; */
     margin: 1rem;
     align-self: center;
 }
@@ -21,11 +27,11 @@ caption{
     font-family: 'Bungee Inline', cursive;
     font-size: 28px;
     font-weight: 900;
-    padding-top: 3rem;
-    padding-bottom: 2rem;
+    /* padding-top: 3rem; */
+    /* padding-bottom: 2rem; */
 }
 th{
-    width: 10%;
+    
     background-color: antiquewhite;
     border: 1px black solid;
 }

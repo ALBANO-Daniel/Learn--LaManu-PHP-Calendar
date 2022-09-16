@@ -8,6 +8,13 @@ for ($i = 0; $i <= 41; $i++) {
 $currentYear = Date('Y');
 $currentMonth = Date('n');
 
+$choosedLanguage = false;
+
+$fr = [ 'January','February','March','April','May','June','July','August','September','October','November','December'];
+$en = ['Janvier','Fevrier','Mars','Avril','Mai','Juin','Julliet','Aout','Septembre','Octobre','Novembre','Decembre'];
+
+$monthsList = !$choosedLanguage ? $en : $fr;
+
 $choosedYear = $_GET['year'] ?? $currentYear;
 $choosedMonth = $_GET['month'] ?? $currentMonth;
 
@@ -48,21 +55,35 @@ for ($i = 1; $i <= $choosedMonthTotalDays; $i++) {
     <form action="./" method="get">
         <label for="month">Month :</label>
         <select name="month" id="month" tabindex="1">
-            <option value="1">Janvier</option>
-            <option value="2">Fevrier</option>
-            <option value="3">Mars</option>
-            <option value="4">Avril</option>
-            <option value="5">Mai</option>
-            <option value="6">Juin</option>
-            <option value="7">Julliet</option>
-            <option value="8">Aout</option>
-            <option value="9">Septembre</option>
-            <option value="10">Octobre</option>
-            <option value="11">Novembre</option>
-            <option value="12">Decembre</option>
+            <option value="" selected disabled hidden>Month</option>
+            <option value="1"><?=$monthsList[0]?></option> 
+            <option value="2"><?=$monthsList[1]?></option>
+            <option value="3"><?=$monthsList[2]?></option>
+            <option value="4"><?=$monthsList[3]?></option>
+            <option value="5"><?=$monthsList[4]?></option>
+            <option value="6"><?=$monthsList[5]?></option>
+            <option value="7"><?=$monthsList[6]?></option>
+            <option value="8"><?=$monthsList[7]?></option>
+            <option value="9"><?=$monthsList[8]?></option>
+            <option value="10"><?=$monthsList[9]?></option>
+            <option value="11"><?=$monthsList[10]?></option>
+            <option value="12"><?=$monthsList[11]?></option>
+            <!-- english -->
+            <!-- January/February/March/April/May/June/July/August/September/October/November -->
+            <!-- French -->
+            <!-- Janvier/Fevrier/Mars/Avril/Mai/Juin/Julliet/Aout/Septembre/Octobre/Novembre/Decembre  -->
         </select>
         <label for="year">Year :</label>
-        <input type="number" name="year" id="year" min="1000" max="3000" tabindex="2" required>
+        <select name="year" id="year" tabindex="2">
+            <?php
+            for ($i = $currentYear - 120; $i < $currentYear + 80; $i++) {
+                if ($i != $currentYear) { ?>
+                    <option value='<?= $i ?>'><?= $i ?></option>
+                <?php } else { ?>
+                    <option selected='selected'><?= $currentYear ?></option>
+            <?php }
+            } ?>
+        </select>
         <input tabindex="3" type="submit" value="Search!">
     </form>
     <table class="calendarTable">
@@ -87,12 +108,12 @@ for ($i = 1; $i <= $choosedMonthTotalDays; $i++) {
                 if ($filler % 7 == 0) echo '<tr>';
                 $filler++;
                 while ($filler % 7 != 0) {
-                    echo "<td tabindex='$tabindexAssign'>$calandrier[$index]</td>";
+                    echo "<td tabindex='$tabindexAssign'><p class='dayNumber'>$calandrier[$index]</p></td>";
                     $tabindexAssign++;
                     $index++;
                     $filler++;
                 };
-                echo "<td tabindex='$tabindexAssign'>$calandrier[$index]</td>";
+                echo "<td tabindex='$tabindexAssign'><p class='dayNumber'>$calandrier[$index]</p></td>";
                 $tabindexAssign++;
                 $index++;
                 echo '</tr>';
