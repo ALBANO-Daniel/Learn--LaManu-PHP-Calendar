@@ -47,7 +47,7 @@ for ($i = 1; $i <= $choosedMonthTotalDays; $i++) {
     <h1>Calendar: choose a date</h1>
     <form action="./" method="get">
         <label for="month">Month :</label>
-        <select name="month" id="month">
+        <select name="month" id="month" tabindex="1">
             <option value="1">Janvier</option>
             <option value="2">Fevrier</option>
             <option value="3">Mars</option>
@@ -62,11 +62,10 @@ for ($i = 1; $i <= $choosedMonthTotalDays; $i++) {
             <option value="12">Decembre</option>
         </select>
         <label for="year">Year :</label>
-        <input type="number" name="year" id="year" min="1000" max="3000" required>
-        <input type="submit" value="Search!">
+        <input type="number" name="year" id="year" min="1000" max="3000" tabindex="2" required>
+        <input tabindex="3" type="submit" value="Search!">
     </form>
-    <!-- CALENDAR TABLE  -->
-    <table>
+    <table class="calendarTable">
         <caption><?= $choosedMonthLiteral . ' - ' . $choosedYear ?></caption>
         <thead>
             <tr class='week'>
@@ -83,15 +82,18 @@ for ($i = 1; $i <= $choosedMonthTotalDays; $i++) {
             <?php
             $filler = 0;
             $index = 0;
+            $tabindexAssign = '4';
             while ($filler <= 41) {
                 if ($filler % 7 == 0) echo '<tr>';
                 $filler++;
                 while ($filler % 7 != 0) {
-                    echo '<td>' . $calandrier[$index] . '</td>';
+                    echo "<td tabindex='$tabindexAssign'>$calandrier[$index]</td>";
+                    $tabindexAssign++;
                     $index++;
                     $filler++;
                 };
-                echo '<td>' . $calandrier[$index] . '</td>';
+                echo "<td tabindex='$tabindexAssign'>$calandrier[$index]</td>";
+                $tabindexAssign++;
                 $index++;
                 echo '</tr>';
             };
