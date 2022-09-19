@@ -9,9 +9,9 @@ $currentYear = Date('Y');
 $currentMonth = Date('n');
 
 $choosedLanguage = false;
-
-$fr = [ 'January','February','March','April','May','June','July','August','September','October','November','December'];
-$en = ['Janvier','Fevrier','Mars','Avril','Mai','Juin','Julliet','Aout','Septembre','Octobre','Novembre','Decembre'];
+# first index value need to be null for use with native PHP function Date, and objet DateTime
+$fr = [null, 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+$en = [null, 'Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Julliet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'];
 
 $monthsList = !$choosedLanguage ? $en : $fr;
 
@@ -35,7 +35,6 @@ for ($i = 1; $i <= $choosedMonthTotalDays; $i++) {
 //-- a for to fill the days after
 //-- on click => go to the month of cliked day    choosedMonth -1/+1
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,32 +54,32 @@ for ($i = 1; $i <= $choosedMonthTotalDays; $i++) {
     <form action="./" method="get">
         <label for="month">Month :</label>
         <select name="month" id="month" tabindex="1">
-            <option value="" selected disabled hidden>Month</option>
-            <option value="1"><?=$monthsList[0]?></option> 
-            <option value="2"><?=$monthsList[1]?></option>
-            <option value="3"><?=$monthsList[2]?></option>
-            <option value="4"><?=$monthsList[3]?></option>
-            <option value="5"><?=$monthsList[4]?></option>
-            <option value="6"><?=$monthsList[5]?></option>
-            <option value="7"><?=$monthsList[6]?></option>
-            <option value="8"><?=$monthsList[7]?></option>
-            <option value="9"><?=$monthsList[8]?></option>
-            <option value="10"><?=$monthsList[9]?></option>
-            <option value="11"><?=$monthsList[10]?></option>
-            <option value="12"><?=$monthsList[11]?></option>
-            <!-- english -->
-            <!-- January/February/March/April/May/June/July/August/September/October/November -->
-            <!-- French -->
-            <!-- Janvier/Fevrier/Mars/Avril/Mai/Juin/Julliet/Aout/Septembre/Octobre/Novembre/Decembre  -->
+            <?php
+            foreach ($monthsList as $key => $value) {
+                if ($key != $choosedMonth) {
+                    echo "<option value='$key'>$value</option>";
+                } else {
+                    echo "<option selected value='$key'>$value</option>";
+                }
+            } ?>
         </select>
         <label for="year">Year :</label>
         <select name="year" id="year" tabindex="2">
             <?php
+            // selected as var
             for ($i = $currentYear - 120; $i < $currentYear + 80; $i++) {
+                // also for day, this way you can change background color for current day
+
+                // o$selected = '';
+                // if($i == $currentYear){$selected = 'selected';}
+                // echo "<optin $selected><?= $i ></option>";
+
+                // VS 
+
                 if ($i != $currentYear) { ?>
-                    <option value='<?= $i ?>'><?= $i ?></option>
+                    <option><?= $i ?></option> <!-- no need for value prop as value can be option content -->
                 <?php } else { ?>
-                    <option selected='selected'><?= $currentYear ?></option>
+                    <option selected><?= $currentYear ?></option>
             <?php }
             } ?>
         </select>
